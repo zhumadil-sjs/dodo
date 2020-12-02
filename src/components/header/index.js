@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
-
 const Header = () => {
   const [classes, setClasses] = useState(true);
-
   const classTogler = () => {
     setClasses(classes ? false : true);
   };
-
   return (
     <header className="header">
       <div className="container">

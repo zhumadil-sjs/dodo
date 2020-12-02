@@ -24,13 +24,6 @@ function Filter() {
 
   return (
     <div className="filter">
-      {/* <input
-        onKeyPress={handleEnter}
-        type='text'
-        placeholder='Добавь в фильтр новый элемент'
-        value={input}
-        onChange={handleChange}
-      /> */}
       <ul className="filter__list">
         {names.map((item, index) => {
           return (
