@@ -2,11 +2,11 @@ import React from 'react';
 import Hero from '../components/hero';
 import Menu from '../components/menu';
 
-function Home() {
+const Home = () => {
 	return (
 		<div>
 			<Hero />
-      <Menu />
+            <Menu />
 		</div>
 	)
 }
