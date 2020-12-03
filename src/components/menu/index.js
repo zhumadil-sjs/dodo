@@ -7,7 +7,7 @@ function Menu() {
   const [pizzas, setPizzas] = useState([]);
   let aiza = [];
   useEffect(async () => {
-    return await fetch('http://localhost:3001/database.json')
+    return await fetch('http://localhost:3002/database.json')
       .then((response) => response.json())
       .then(({ pizzas }) => pizzas)
       .then((array) => setPizzas(array));
