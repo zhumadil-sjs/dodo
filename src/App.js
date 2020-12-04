@@ -19,8 +19,8 @@ function App() {
     store.dispatch({ type: "ОБНУЛЕНИЕ" });
   };
   store.subscribe(() => {
-  setNum(store.getState().number);
-});
+    setNum(store.getState().number);
+  });
   return (
     <div className="App">
       <h1>{num}</h1>
