@@ -1,12 +1,12 @@
-import { createStore } from 'redux';
-import './reducers/sort.js';
+import { createStore } from "redux";
+import "./reducers/sort.js";
 function counterReducer(state = { number: 0 }, action) {
   switch (action.type) {
-    case 'ДОБАВИТЬ':
+    case "ДОБАВИТЬ":
       return { number: state.number + 100 };
-    case 'УМЕНЬШИТЬ':
+    case "УМЕНЬШИТЬ":
       return { number: state.number - 100 };
-    case 'ОБНУЛЕНИЕ':
+    case "ОБНУЛЕНИЕ":
       return { number: (state.number = 0) };
     default:
       return state;
