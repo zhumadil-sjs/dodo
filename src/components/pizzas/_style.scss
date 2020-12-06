@@ -153,17 +153,13 @@
         &.is-active {
           border-radius: vmin(5);
         }
-	  }
-	  
-	  
+      }
     }
     &__sizes {
       li {
         margin-top: vmin(7);
-	  }
-	  
-	}
-	
+      }
+    }
 
     &__button {
       font-size: vmin(16);
