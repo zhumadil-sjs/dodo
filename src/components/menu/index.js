@@ -4,6 +4,7 @@ import Sort from "../sortPopUp";
 import Pizzas from "../pizzas";
 import PropTypes from "prop-types";
 
+
 function Menu() {
   const [pizzas, setPizzas] = useState([]);
   useEffect(async () => {
@@ -13,6 +14,7 @@ function Menu() {
       .then((array) => setPizzas(array));
   }, []);
 
+  
   return (
     <section className="menu">
       <div className="container">
