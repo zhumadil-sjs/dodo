@@ -129,7 +129,6 @@
 
 @include mobile(578px) {
   .pizzas {
-	  
     &__parameters {
       padding: vmin(5) vmin(5);
     }
@@ -145,8 +144,8 @@
     }
     &__price {
       font-size: vmin(22);
-	}
-	
+    }
+
     &__types,
     &__sizes {
       li {

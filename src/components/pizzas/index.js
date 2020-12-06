@@ -10,7 +10,6 @@ const Pizzas = ({ id, imageUrl, name, price, types, sizes }) => {
   const sizesAvailable = [26, 30, 40];
   const typesNames = ["тонкое", "традиционное"];
 
-  
   const typesClick = (i) => {
     setTypesActive(i);
   };
