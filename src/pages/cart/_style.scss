@@ -8,12 +8,12 @@
   &__container {
     max-width: vw(820);
     margin: 0 auto;
-  } 
+  }
   &__header,
   &__result {
     @include flex-center(space-between);
     padding: vw(30) 0;
-  } 
+  }
   &__left {
     @include flex-center();
   }

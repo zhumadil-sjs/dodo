@@ -9,12 +9,12 @@ function SortPopUp({ items }) {
   const handleClick = () => {
     setSort(sort ? false : true);
   };
- 
+
   const onSelectItem = (index) => {
     setActive(index);
     setSort(false);
   };
- 
+
   const handleOutsideClick = (e) => {
     if (!e.path.includes(sortPop.current)) {
       setSort(false);
