@@ -27,7 +27,7 @@ const Hero = () => {
           </div>
           <div className="col-4 hero__column">
             <a href="" className="hero__item">
-              <img src={hero4} alt="" />
+               <img src={hero4} alt="" />
             </a>
           </div>
           <div className="col-4 hero__column">
