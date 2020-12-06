@@ -11,7 +11,7 @@
     align-items: center;
     b {
       margin-right: 8px;
-    } 
+    }
     span {
       color: $color-orange;
       border-bottom: 1px dashed $color-orange;
@@ -45,7 +45,7 @@
           color: $color-orange;
         }
       }
-    }
+    } 
     &.is-active {
       display: block;
     }
