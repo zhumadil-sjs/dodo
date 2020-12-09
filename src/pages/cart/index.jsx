@@ -153,7 +153,7 @@ const Cart = () => {
             <div>
               <span>
                 Сумма заказа: <b className='cart__total'>900 ₽</b>
-              </span> 
+              </span>
             </div>
           </div>
         </div>

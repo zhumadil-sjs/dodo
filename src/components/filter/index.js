@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { filterNames } from "./const.js";
+import React, { useState } from 'react';
+import { filterNames } from './const.js';
 
 function Filter() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [names, setNames] = useState(filterNames);
   const [elIndex, setElIndex] = useState(0);
 
@@ -12,9 +12,9 @@ function Filter() {
 
   const handleEnter = (event) => {
     setInput(event.target.value);
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       setNames([...names, event.target.value]);
-      setInput("");
+      setInput('');
     }
   };
 
@@ -23,7 +23,7 @@ function Filter() {
   };
 
   return (
-    <div className="filter">
+    <div className='filter'>
       {/* <input
         onKeyPress={handleEnter}
         type='text'
@@ -31,14 +31,13 @@ function Filter() {
         value={input}
         onChange={handleChange}
       /> */}
-      <ul className="filter__list">
+      <ul className='filter__list'>
         {names.map((item, index) => {
           return (
             <li
               key={item}
               onClick={() => handleClick(index)}
-              className={`filter__item ${index === elIndex ? "is-active" : ""}`}
-            >
+              className={`filter__item ${index === elIndex ? 'is-active' : ''}`}>
               {item}
             </li>
           );
@@ -47,6 +46,5 @@ function Filter() {
     </div>
   );
 }
-
 
 export default Filter;
