@@ -2,15 +2,28 @@ import React, { useEffect, useState } from 'react';
 import Filter from '../filter';
 import Sort from '../sortPopUp';
 import Pizzas from '../pizzas';
+import setPizzas from '../../redux/actions/pizzas';
+// import { connect } from 'redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
+
+import { fetchPizzas } from '../../redux/actions/pizzas';
 
 function Menu() {
-  const [pizzas, setPizzas] = useState([]);
-  useEffect(async () => {
-    return await fetch('http://localhost:3000/database.json')
-      .then((response) => response.json())
-      .then(({ pizzas }) => pizzas)
-      .then((array) => setPizzas(array));
-  }, []);
+  const dispatch = useDispatch();
+
+  const hranilishe = useSelector(({ pizzas, filters }) => {
+    return {
+      items: pizzas.items,
+      sortBy: filters.sortBy,
+    };
+  });
+
+  const { category, sortBy } = useSelector(({ filters }) => filters);
+
+  React.useEffect(() => {
+    dispatch(fetchPizzas(category));
+  }, [category]);
+
 
   return (
     <section className='menu'>
@@ -22,8 +35,8 @@ function Menu() {
         <div className='pizzas'>
           <h2 className='pizzas__title'>Все пиццы</h2>
           <div className='row pizzas__row pt-35 ajara'>
-            {pizzas &&
-              pizzas.map((item) => {
+            {hranilishe.items &&
+              hranilishe.items.map((item) => {
                 return <Pizzas {...item} key={item.id} />;
               })}
           </div>
@@ -33,4 +46,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default connect()(Menu);

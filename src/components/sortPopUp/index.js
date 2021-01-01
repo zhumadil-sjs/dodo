@@ -1,12 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import store from '../../redux/store';
+import { setSortBy } from '../../redux/actions/filters';
+import { useDispatch, useSelector } from 'react-redux';
 
-
-
-function SortPopUp({ items }) {
+const SortPopUp = React.memo(function SortPopUp({ items }) {
   const [sort, setSort] = useState(false);
   const [active, setActive] = useState(0);
   const sortPop = useRef();
+
+  const dispatch = useDispatch();
+
+  const sortStore = useSelector(({filters}) => {
+    return {
+      sortBy: filters.sortBy
+    }
+  })
+
+  const sortNames = ['popular', 'price', 'alphabet'];
 
   const handleClick = () => {
     setSort(sort ? false : true);
@@ -15,6 +26,7 @@ function SortPopUp({ items }) {
   const onSelectItem = (index) => {
     setActive(index);
     setSort(false);
+    dispatch(setSortBy(sortNames[index]));
   };
 
   const handleOutsideClick = (e) => {
@@ -26,8 +38,6 @@ function SortPopUp({ items }) {
   useEffect(() => {
     document.body.addEventListener('click', handleOutsideClick);
   }, []);
-
-  
 
   return (
     <div ref={sortPop} className='sort'>
@@ -52,7 +62,10 @@ function SortPopUp({ items }) {
           {items.map((item, index) => {
             // console.log(item.name)
             return (
-              <li key={item + index} onClick={() => onSelectItem(index)} className={index === active ? 'active' : ''}>
+              <li
+                key={item + index}
+                onClick={() => onSelectItem(index)}
+                className={index === active ? 'active' : ''}>
                 {item.name}
               </li>
             );
@@ -61,24 +74,14 @@ function SortPopUp({ items }) {
       </div>
     </div>
   );
-}
-
+});
 
 export default SortPopUp;
 
-
 SortPopUp.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
-}
-
-SortPopUp.defaultProps = {
-  items: [{name:'Кролик'},{name:'Сендвич'},{name:'Кола'}],
 };
 
-// Pizzas.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   name: PropTypes.string.isRequired,
-//   types: PropTypes.array.isRequired,
-//   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-//   price: PropTypes.number.isRequired,
-// };
+SortPopUp.defaultProps = {
+  items: [{ name: 'Кролик' }, { name: 'Сендвич' }, { name: 'Кола' }],
+};
