@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Alphabet Player</title>
+<style>
+@font-face { font-family: 'Fredoka'; font-weight: 500; src: url(assets/fonts/fredoka-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Fredoka'; font-weight: 600; src: url(assets/fonts/fredoka-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Fredoka'; font-weight: 700; src: url(assets/fonts/fredoka-latin-700-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 400; src: url(assets/fonts/nunito-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 600; src: url(assets/fonts/nunito-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 700; src: url(assets/fonts/nunito-latin-700-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Nunito'; font-weight: 800; src: url(assets/fonts/nunito-latin-800-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Caveat'; font-weight: 500; src: url(assets/fonts/caveat-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Caveat'; font-weight: 700; src: url(assets/fonts/caveat-latin-700-normal.woff2) format('woff2'); }
+
+:root {
+  --bg: #FFF6E9; --ink: #1E2A44; --muted: #6B7280; --card: #FFFFFF;
+  --line: #EADFCC; --accent: #FF6B57; --accent-soft: #FFE3DE;
+  --black: #1A1A1A; --red: #DD0000; --gold: #FFCE00;
+  --fd: 'Fredoka', 'DejaVu Sans', 'Noto Color Emoji', sans-serif;
+  --fb: 'Nunito', 'DejaVu Sans', 'Noto Color Emoji', sans-serif;
+  --fh: 'Caveat', 'DejaVu Sans', cursive;
+  --emoji: 'Noto Color Emoji', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--fb); }
+#root { position: absolute; inset: 0; overflow: hidden; }
+
+/* ---------- Hintergrund ---------- */
+.bg { position: absolute; inset: 0; background:
+  radial-gradient(circle at 1px 1px, rgba(30,42,68,.07) 1.6px, transparent 0) 0 0 / 36px 36px, var(--bg); }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.flag { position: absolute; left: 0; right: 0; top: 0; height: 12px; display: flex; flex-direction: column; z-index: 5; }
+.flag i { flex: 1; } .flag i:nth-child(1){background:var(--black)} .flag i:nth-child(2){background:var(--red)} .flag i:nth-child(3){background:var(--gold)}
+
+/* ---------- Kopfzeile ---------- */
+.header { position: absolute; top: 34px; left: 60px; right: 60px; height: 64px; display: flex; align-items: center; justify-content: space-between; z-index: 4; }
+.pill { font: 700 26px var(--fb); padding: 12px 26px; border-radius: 999px; background: var(--card); box-shadow: 0 4px 0 var(--line); border: 2px solid var(--line); white-space: nowrap; }
+.pill .dot { display:inline-block; width:14px; height:14px; border-radius:50%; background: var(--accent); margin-right: 12px; vertical-align: 1px; }
+.brand { font: 600 26px var(--fd); color: var(--muted); }
+.progress { display: flex; gap: 6px; }
+.progress span { width: 34px; height: 40px; border-radius: 9px; display: grid; place-items: center; font: 600 20px var(--fd); color: #B8AE9C; background: rgba(255,255,255,.6); }
+.progress span.done { color: var(--ink); background: #fff; }
+.progress span.cur { color: #fff; background: var(--accent); transform: scale(1.18); box-shadow: 0 4px 10px rgba(0,0,0,.15); }
+
+/* ---------- Bühne ---------- */
+.stage { position: absolute; inset: 0; z-index: 2; }
+.abs { position: absolute; }
+.card { background: var(--card); border-radius: 40px; box-shadow: 0 10px 0 var(--line), 0 24px 60px rgba(30,42,68,.10); border: 3px solid var(--line); }
+.hl { color: var(--accent); position: relative; }
+.hl::after { content: ''; position: absolute; left: 2px; right: 2px; bottom: .05em; height: .16em; border-radius: 4px; background: var(--accent); opacity: .28; }
+.emoji { font-family: var(--emoji); line-height: 1; }
+
+/* Untertitel */
+.caption { position: absolute; left: 50%; bottom: 44px; transform: translateX(-50%); max-width: 1560px; z-index: 6;
+  font: 700 33px/1.28 var(--fb); text-align: center; color: #fff; background: rgba(30,42,68,.88);
+  padding: 14px 34px 16px; border-radius: 22px; white-space: normal; width: max-content; }
+
+/* Buchstaben-Szene */
+.bigcard { left: 150px; top: 170px; width: 580px; height: 620px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+.bigcard::before { content:''; position:absolute; left:0; right:0; top:0; height: 26px; background: var(--accent); }
+.bigletter { font: 700 330px/1 var(--fd); letter-spacing: -6px; color: var(--accent); margin-top: 10px; }
+.bigletter .lo { color: var(--ink); opacity: .85; }
+.lname { font: 700 120px/1 var(--fh); color: var(--ink); margin-top: 6px; display: flex; align-items: center; gap: 22px; }
+.lname .spk { font-size: 64px; }
+.words { left: 800px; top: 180px; width: 970px; display: flex; flex-direction: column; gap: 30px; }
+.wcard { height: 170px; display: flex; align-items: center; gap: 34px; padding: 0 40px; border-radius: 34px; }
+.wcard .ebox { width: 120px; height: 120px; border-radius: 30px; display: grid; place-items: center; font-size: 80px; background: var(--accent-soft); flex: none; }
+.wcard .wtext { display: flex; flex-direction: column; }
+.wcard .art { font: 700 30px var(--fb); color: var(--muted); height: 34px; }
+.wcard .w { font: 600 76px/1.05 var(--fd); }
+.wcard .snd { margin-left: auto; font: 700 34px var(--fb); color: var(--accent); background: var(--accent-soft); padding: 8px 22px; border-radius: 16px; white-space: nowrap; }
+.words.four { gap: 22px; } .words.four .wcard { height: 132px; } .words.four .ebox { width: 96px; height: 96px; font-size: 64px; } .words.four .w { font-size: 62px; } .words.four .art { font-size: 26px; height: 28px; }
+.note { left: 150px; right: 150px; top: 792px; height: 84px; display: flex; align-items: center; gap: 22px; padding: 0 36px;
+  background: #FFF1B8; border-radius: 22px; box-shadow: 0 6px 0 #EED98A; font: 700 36px var(--fb); color: #4A3B00; }
+.note .emoji { font-size: 46px; }
+
+/* Regel-Szene */
+.rulecard .tag { position: absolute; top: 58px; font: 800 26px var(--fb); color: var(--accent); background: var(--accent-soft); padding: 8px 22px; border-radius: 999px; white-space: nowrap; max-width: 520px; overflow: hidden; text-overflow: ellipsis; }
+.chars { font: 700 240px/1 var(--fd); color: var(--accent); letter-spacing: -2px; white-space: nowrap; }
+.arrow { font: 600 70px/1 var(--fd); color: #C9BFAE; margin: 6px 0; }
+.sound { font: 600 74px/1 var(--fd); color: var(--ink); display: flex; gap: 18px; align-items: center; white-space: nowrap; }
+.sound .emoji { font-size: 58px; }
+.ipa { font: 400 40px 'DejaVu Sans', sans-serif; color: var(--muted); margin-top: 16px; }
+
+/* Vergleich */
+.ctitle { left: 0; right: 0; top: 128px; text-align: center; font: 700 72px var(--fd); }
+.cols { left: 140px; right: 140px; top: 236px; display: flex; gap: 34px; align-items: flex-start; }
+.col { flex: 1; padding: 24px 28px 28px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+.col .head { text-align: center; font: 700 92px/1 var(--fd); color: var(--accent); white-space: nowrap; }
+.col .sub { text-align: center; font: 700 27px var(--fb); color: var(--muted); margin-top: -2px; margin-bottom: 6px; }
+.crow { display: flex; align-items: center; gap: 18px; background: #FBF6EE; border-radius: 22px; padding: 10px 20px; min-height: 84px; }
+.crow .emoji { font-size: 56px; width: 70px; text-align: center; flex: none; }
+.crow .art { font: 700 28px var(--fb); color: var(--muted); margin-right: 10px; }
+.crow .w { font: 600 52px/1.1 var(--fd); }
+.crow .snd { margin-left: auto; font: 800 32px var(--fb); color: var(--accent); background: var(--accent-soft); padding: 4px 14px; border-radius: 12px; }
+.cols.n2 .crow { min-height: 104px; } .cols.n2 .crow .w { font-size: 60px; } .cols.n2 .crow .emoji { font-size: 64px; } .cols.n2 { top: 250px; }
+.cols.n3 .crow .w { font-size: 46px; } .cols.n3 .col .head { font-size: 76px; }
+.cols.n5 .col { padding: 26px 16px 30px; } .cols.n5 .crow { flex-direction: column; gap: 6px; background: none; }
+.cols.n5 .crow .w { font-size: 50px; } .cols.n5 .crow .art { font-size: 26px; margin-right: 4px; } .cols.n5 .crow .emoji { font-size: 84px; width: auto; }
+.cols.n5 .col .head { font-size: 110px; }
+
+/* Buchstabieren */
+.spelltitle { left: 0; right: 0; top: 150px; text-align: center; font: 700 64px var(--fd); }
+.spellemoji { left: 0; right: 0; top: 250px; text-align: center; font-size: 150px; }
+.tiles { left: 0; right: 0; top: 460px; display: flex; justify-content: center; gap: 22px; }
+.tile { width: 170px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.tile .face { width: 170px; height: 190px; border-radius: 30px; display: grid; place-items: center; font: 700 130px/1 var(--fd); background: #fff; border: 3px solid var(--line); box-shadow: 0 8px 0 var(--line); }
+.tile .nm { font: 700 64px/1 var(--fh); color: var(--accent); white-space: nowrap; }
+
+/* Quiz */
+.qbadge { left: 0; right: 0; top: 150px; display: flex; justify-content: center; }
+.qbadge .pill { font-size: 34px; background: var(--ink); color: #fff; border-color: var(--ink); box-shadow: 0 6px 0 #0d1424; }
+.qword { left: 0; right: 0; top: 330px; display: flex; justify-content: center; font: 700 170px/1 var(--fd); }
+.qpart { position: relative; padding: 0; border-radius: 24px; display: flex; flex-direction: column; align-items: center; }
+.qpart .bgp { position: absolute; inset: -10px 1px; border-radius: 20px; background: var(--accent-soft); z-index: -1; opacity: 0; }
+.qpart .lab { position: absolute; top: 200px; font: 800 34px var(--fb); color: var(--accent); white-space: nowrap; }
+.qemoji { left: 0; right: 0; top: 590px; text-align: center; font-size: 170px; }
+.countdown { left: 50%; top: 560px; width: 230px; height: 230px; margin-left: -115px; }
+.countdown svg { position: absolute; inset: 0; }
+.countdown .num { position: absolute; inset: 0; display: grid; place-items: center; font: 700 130px/1 var(--fd); color: var(--ink); }
+.readaloud { left: 0; right: 0; top: 820px; text-align: center; font: 800 40px var(--fb); color: var(--muted); }
+
+/* Wiederholung (Poster) */
+.poster { left: 330px; top: 130px; width: 1260px; height: 770px; background: #fff; border: 22px solid #151515; box-shadow: 0 30px 70px rgba(0,0,0,.25); padding: 30px 60px; }
+.poster h2 { font: 700 62px var(--fd); text-align: center; margin-bottom: 18px; }
+.pgrid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-flow: column; grid-template-rows: repeat(10, 54px); column-gap: 40px; }
+.pcell { display: flex; align-items: baseline; gap: 20px; padding: 0 16px; border-radius: 14px; }
+.pcell b { font: 700 46px/54px var(--fd); width: 52px; }
+.pcell i { font: 700 44px/54px var(--fh); font-style: normal; color: #333; }
+
+/* Titel & Kapitel */
+.title1 { left: 0; right: 0; top: 300px; text-align: center; font: 700 150px/1.05 var(--fd); }
+.title1 .t2 { color: var(--accent); }
+.subtitle { left: 0; right: 0; top: 520px; text-align: center; font: 700 52px var(--fb); color: var(--muted); }
+.chips { left: 0; right: 0; top: 640px; display: flex; justify-content: center; gap: 22px; }
+.chip { font: 600 40px var(--fd); padding: 14px 30px; border-radius: 999px; background: #fff; border: 3px solid var(--line); box-shadow: 0 6px 0 var(--line); }
+.go { left: 0; right: 0; top: 770px; text-align: center; font: 700 76px var(--fd); color: var(--accent); }
+.floatL { position: absolute; font: 700 120px var(--fd); opacity: .14; }
+.chapbg { position: absolute; inset: 0; z-index: 1; }
+.chapnum { left: 0; right: 0; top: 200px; display: flex; justify-content: center; }
+.chapnum div { width: 210px; height: 210px; border-radius: 50%; background: #fff; display: grid; place-items: center; font: 700 130px/1 var(--fd); }
+.chaplabel { left: 0; right: 0; top: 450px; text-align: center; font: 800 44px var(--fb); color: rgba(255,255,255,.85); letter-spacing: 6px; text-transform: uppercase; }
+.chaptitle { left: 0; right: 0; top: 520px; text-align: center; font: 700 130px/1.05 var(--fd); color: #fff; }
+.chapsub { left: 0; right: 0; top: 690px; text-align: center; font: 600 54px var(--fd); color: rgba(255,255,255,.92); }
+.chapicon { right: 230px; top: 200px; font-size: 170px; }
+
+/* Überblick */
+.ogrid { left: 0; right: 0; top: 280px; display: grid; grid-template-columns: repeat(13, 112px); gap: 20px; justify-content: center; }
+.otile { height: 130px; border-radius: 24px; display: grid; place-items: center; font: 700 76px/1 var(--fd); background: #fff; border: 3px solid var(--line); box-shadow: 0 6px 0 var(--line); }
+.oextra { left: 0; right: 0; top: 640px; display: flex; justify-content: center; gap: 30px; }
+.oextra .otile { width: 150px; height: 160px; font-size: 96px; border-color: var(--gold); box-shadow: 0 6px 0 #E3B800; }
+.ocount { left: 0; right: 0; top: 160px; text-align: center; font: 700 64px var(--fd); }
+
+/* Outro */
+.confetti { position: absolute; width: 18px; height: 28px; border-radius: 4px; }
+.olist { left: 0; right: 0; top: 470px; display: flex; justify-content: center; gap: 40px; }
+.olist .chip { font-size: 44px; padding: 22px 40px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const PALETTE = [
+  ['#FF6B57', '#FFE4DF'], ['#12A39A', '#D6F3F0'], ['#E89300', '#FFF0CC'], ['#7B5CFF', '#E9E3FF'],
+  ['#2F8FE8', '#DDEEFF'], ['#E84D8A', '#FFE0EC'], ['#3BAA4A', '#DFF5E1'],
+];
+const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const EXTRA = ['Ä', 'Ö', 'Ü', 'ß'];
+const NAMES = ['Ah','Beh','Tseh','Deh','Eh','Eff','Geh','Hah','Ih','Jott','Kah','Ell','Emm','Enn','Oh','Peh','Kuh','Err','Ess','Teh','Uh','Fau','Veh','Iks','Ypsilon','Tzett'];
+const EXTRA_NAMES = ['Äh', 'Öh', 'Üh', 'Eszett'];
+
+const $ = (tag, cls, html, parent) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  if (parent) parent.appendChild(e);
+  return e;
+};
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const hl = s => esc(s).replace(/\[([^\]]+)\]/g, '<span class="hl">$1</span>');
+const isArticle = t => /^(der|die|das)$/.test(t);
+
+function parseWord(str) {
+  let sound = '';
+  const m = str.match(/\s\|(.+)$/);
+  if (m) { sound = m[1]; str = str.slice(0, m.index); }
+  const toks = str.trim().split(/\s+/);
+  const emoji = toks.pop();
+  const art = isArticle(toks[0]) ? toks.shift() : '';
+  return { art, word: toks.join(' '), html: hl(toks.join(' ')), emoji, sound };
+}
+
+// ---------- Animations-Helfer ----------
+const A = [];
+function anim(el, kf, start, dur = 0.5, easing = 'cubic-bezier(.2,.9,.3,1.25)', fill = 'both') {
+  A.push(el.animate(kf, { delay: Math.max(0, start) * 1000, duration: dur * 1000, fill, easing }));
+}
+const pop = (el, t, d = 0.55) => anim(el, [{ opacity: 0, transform: 'scale(.55) translateY(30px)' }, { opacity: 1, transform: 'none' }], t, d);
+const slide = (el, t, dx = 120, d = 0.6) => anim(el, [{ opacity: 0, transform: `translateX(${dx}px)` }, { opacity: 1, transform: 'none' }], t, d, 'cubic-bezier(.2,.8,.2,1.1)');
+const rise = (el, t, d = 0.6) => anim(el, [{ opacity: 0, transform: 'translateY(40px)' }, { opacity: 1, transform: 'none' }], t, d, 'cubic-bezier(.2,.8,.2,1)');
+const fade = (el, t, d = 0.4) => anim(el, [{ opacity: 0 }, { opacity: 1 }], t, d, 'linear');
+const fadeOut = (el, t, d = 0.35) => anim(el, [{ opacity: 1 }, { opacity: 0 }], t, d, 'linear', 'forwards');
+function flash(el, t, d = 0.9, color) { // kurzes Hervorheben
+  anim(el, [{ transform: 'scale(1)' }, { transform: 'scale(1.12)', offset: .35 }, { transform: 'scale(1)' }], t, d, 'ease-in-out', 'none');
+}
+function loop(el, kf, dur, start = 0) {
+  A.push(el.animate(kf, { duration: dur * 1000, iterations: Infinity, delay: start * 1000, easing: 'ease-in-out', direction: 'alternate', fill: 'both' }));
+}
+
+// ---------- Aufbau ----------
+let S, T;
+function setup(scene, timing) {
+  S = scene; T = timing;
+  const root = document.getElementById('root');
+  root.innerHTML = '';
+  const [acc, soft] = PALETTE[timing.color % PALETTE.length];
+  root.style.setProperty('--accent', acc);
+  root.style.setProperty('--accent-soft', soft);
+
+  // Hintergrund mit langsam wandernden Farbklecksen (global getaktet, damit Übergänge nahtlos sind)
+  const bg = $('div', 'bg', null, root);
+  const blobs = [[-200, -150, 700, '#FFD9A8'], [1350, 600, 760, '#CDEBE6'], [900, -260, 560, '#FFD0C7']];
+  blobs.forEach(([x, y, s, c], i) => {
+    const b = $('div', 'blob', null, bg);
+    Object.assign(b.style, { left: x + 'px', top: y + 'px', width: s + 'px', height: s + 'px', background: c });
+    A.push(b.animate([{ transform: 'translate(0,0) scale(1)' }, { transform: `translate(${i % 2 ? -120 : 140}px, ${i ? 90 : 120}px) scale(1.15)` }],
+      { duration: (23 + i * 7) * 1000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out', fill: 'both', _global: true }));
+    A[A.length - 1]._global = true;
+  });
+  const flag = $('div', 'flag', '<i></i><i></i><i></i>', root);
+
+  if (scene.type === 'chapter') buildChapter(root);
+
+  // Kopfzeile
+  if (scene.type !== 'title' && scene.type !== 'chapter') {
+    const h = $('div', 'header', null, root);
+    $('div', 'pill', `<span class="dot"></span>${esc(scene.chapter || '')}`, h).style.visibility = scene.chapter ? 'visible' : 'hidden';
+    if (scene.type === 'letter') {
+      const p = $('div', 'progress', null, h);
+      ABC.concat(EXTRA).forEach((l, i) => {
+        const s = $('span', i < scene.idx ? 'done' : '', l, p);
+        if (i === scene.idx) { s.className = 'cur'; }
+      });
+    }
+    if (scene.type !== 'letter') $('div', 'brand', '🇩🇪 Deutsch lernen · ABC', h);
+  }
+
+  const st = $('div', 'stage', null, root);
+  const b = i => (T.beats[i] ? T.beats[i].start : T.dur) + 0.05;
+  ({ title: buildTitle, overview: buildOverview, letter: buildLetter, rule: buildRule, compare: buildCompare,
+     spell: buildSpell, quiz: buildQuiz, recap: buildRecap, outro: buildOutro, chapter: () => {} })[scene.type](st, b);
+
+  // Untertitel
+  if (T.captions) {
+    T.beats.forEach((bt, i) => {
+      if (!bt.cap) return;
+      const c = $('div', 'caption', esc(bt.cap), root);
+      const end = i + 1 < T.beats.length ? T.beats[i + 1].start : T.dur - 0.3;
+      anim(c, [{ opacity: 0 }, { opacity: 1 }], bt.start, 0.15, 'linear');
+      anim(c, [{ opacity: 1 }, { opacity: 0 }], end - 0.12, 0.12, 'linear', 'forwards');
+    });
+  }
+  // Szene ausblenden
+  fadeOut(st, T.dur - 0.35, 0.35);
+}
+
+function wordCard(parent, w, cls = 'wcard card') {
+  const p = parseWord(w);
+  const c = $('div', cls, null, parent);
+  $('div', 'ebox emoji', p.emoji, c);
+  const t = $('div', 'wtext', null, c);
+  $('div', 'art', p.art || '&nbsp;', t);
+  $('div', 'w', p.html, t);
+  if (p.sound) $('div', 'snd', '🔊 ' + esc(p.sound), c);
+  return c;
+}
+
+function noteBox(st, text, t, icon = '💡') {
+  const n = $('div', 'note abs', `<span class="emoji">${icon}</span><span>${hl(text)}</span>`, st);
+  anim(n, [{ opacity: 0, transform: 'translateY(40px) rotate(-1.5deg)' }, { opacity: 1, transform: 'rotate(-0.6deg)' }], t, 0.6);
+  return n;
+}
+
+function buildLetter(st, b) {
+  const card = $('div', 'bigcard card abs', null, st);
+  const special = S.L === 'ẞ';
+  const big = $('div', 'bigletter', special ? `<span>ß</span>` : `<span>${S.L}</span><span class="lo">${S.lower}</span>`, card);
+  const nm = $('div', 'lname', `<span>${esc(S.name)}</span><span class="spk emoji">🔊</span>`, card);
+  pop(card, 0.05, 0.7);
+  anim(big, [{ transform: 'scale(.3) rotate(-12deg)', opacity: 0 }, { transform: 'none', opacity: 1 }], 0.2, 0.8);
+  rise(nm, b(0) + 0.1);
+  flash(big, b(0) + 0.15, 0.8);
+  const ws = $('div', 'words abs', null, st);
+  S.words.forEach((w, i) => slide(wordCard(ws, w), b(i + 1)));
+  if (S.tip) noteBox(st, S.tip, b(4), '💡');
+}
+
+function buildRule(st, b) {
+  const card = $('div', 'bigcard card abs rulecard', null, st);
+  if (S.label) $('div', 'tag', esc(S.label), card);
+  const len = S.chars.length;
+  const fs = len <= 2 ? 250 : len <= 3 ? 210 : len <= 5 ? 160 : 112;
+  const ch = $('div', 'chars', esc(S.chars).replace(/ /g, '&thinsp;·&thinsp;'), card);
+  ch.style.fontSize = fs + 'px';
+  if (S.label) ch.style.marginTop = '40px';
+  const ar = $('div', 'arrow', '↓', card);
+  const so = $('div', 'sound', `<span class="emoji">🔊</span><span>${esc(S.sound)}</span>`, card);
+  if (S.sound.length > 9) so.style.fontSize = '60px';
+  const ipa = $('div', 'ipa', esc(S.ipa || ''), card);
+  pop(card, 0.05, 0.7);
+  anim(ch, [{ transform: 'scale(.3)', opacity: 0 }, { transform: 'none', opacity: 1 }], 0.2, 0.8);
+  fade(ar, b(0) + 0.6); rise(so, b(0) + 0.9); fade(ipa, b(0) + 1.2);
+  const ws = $('div', 'words abs' + (S.words.length > 3 ? ' four' : ''), null, st);
+  S.words.forEach((w, i) => slide(wordCard(ws, w), b(i + 1)));
+  if (S.note) noteBox(st, S.note, b(S.words.length + 1), '⭐');
+}
+
+function buildCompare(st, b) {
+  const t = $('div', 'ctitle abs', hl(S.title), st);
+  rise(t, 0.1);
+  const n = S.cols.length;
+  const cols = $('div', `cols abs n${n}`, null, st);
+  S.cols.forEach((c, i) => {
+    const col = $('div', 'col card', null, cols);
+    $('div', 'head', esc(c.head), col);
+    if (c.sub) $('div', 'sub', esc(c.sub), col);
+    c.words.forEach((w, j) => {
+      const p = parseWord(w);
+      const r = $('div', 'crow', null, col);
+      $('div', 'emoji', p.emoji, r);
+      const tx = $('div', '', null, r);
+      $('div', 'w', (p.art ? `<span class="art">${p.art}</span>` : '') + p.html, tx);
+      if (p.sound) $('div', 'snd', esc(p.sound), r);
+      rise(r, b(i + 1) + 0.35 + j * 0.25 * (n < 5 ? 1 : 0));
+    });
+    pop(col, b(i + 1));
+  });
+  if (S.note) noteBox(st, S.note, b(n + 1), '⭐');
+}
+
+function buildTitle(st, b) {
+  const spots = [[60,90],[330,60],[620,40],[1180,50],[1480,80],[1760,140],[40,420],[1790,430],[90,760],[360,880],[700,900],[1050,890],[1380,880],[1700,760],[200,240],[1620,300],[230,600],[1640,600]];
+  spots.forEach(([x, y], i) => {
+    const l = $('div', 'floatL', ABC[(i * 7) % 26], st);
+    Object.assign(l.style, { left: x + 'px', top: y + 'px', color: PALETTE[i % 7][0], fontSize: (90 + (i * 37) % 90) + 'px' });
+    anim(l, [{ opacity: 0 }, { opacity: 0.22 }], 0.1 + i * 0.05, 0.8, 'linear');
+    loop(l, [{ transform: 'translateY(0) rotate(-8deg)' }, { transform: `translateY(${30 + i % 4 * 10}px) rotate(8deg)` }], 3 + (i % 5) * 0.6);
+  });
+  const t = $('div', 'title1 abs', 'Das <span class="t2">deutsche</span> Alphabet', st);
+  pop(t, 0.2, 0.9);
+  const s = $('div', 'subtitle abs', esc(S.subtitle), st); rise(s, b(1));
+  const ch = $('div', 'chips abs', null, st);
+  S.chips.forEach((c, i) => pop($('div', 'chip', esc(c), ch), b(2) + i * 0.35));
+  const go = $('div', 'go abs', 'Los geht\'s! 🚀', st); pop(go, b(3) + 1.2);
+}
+
+function buildOverview(st, b) {
+  const t = $('div', 'ocount abs', '26 Buchstaben + Ä Ö Ü ß', st); rise(t, 0.1);
+  const g = $('div', 'ogrid abs', null, st);
+  const span = (T.beats[0].send - T.beats[0].start);
+  ABC.forEach((l, i) => {
+    const e = $('div', 'otile', l, g);
+    e.style.color = PALETTE[i % 7][0];
+    pop(e, b(0) + 0.2 + i * Math.min(0.12, (span - 0.6) / 26));
+  });
+  const x = $('div', 'oextra abs', null, st);
+  EXTRA.forEach((l, i) => pop($('div', 'otile', l, x), b(1) + 0.8 + i * 0.45));
+  [...g.children, ...x.children].forEach((e, i) => flash(e, b(2) + i * 0.03, 0.6));
+}
+
+function buildChapter(root) {
+  const bg = $('div', 'chapbg', null, root);
+  bg.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 60%), var(--accent)`;
+  fade(bg, 0, 0.35); fadeOut(bg, T.dur - 0.4, 0.4);
+  const st = $('div', 'stage', null, root); st.style.zIndex = 3;
+  for (let i = 0; i < 10; i++) {
+    const l = $('div', 'floatL', ABC[(i * 5 + S.num * 3) % 26], st);
+    Object.assign(l.style, { left: ((i * 401) % 1800) + 'px', top: ((i * 263) % 960) + 'px', color: '#fff', opacity: 0.12, fontSize: (100 + (i * 41) % 140) + 'px' });
+    loop(l, [{ transform: 'translateY(0) rotate(-6deg)' }, { transform: 'translateY(40px) rotate(6deg)' }], 3.2 + i % 3);
+  }
+  const n = $('div', 'chapnum abs', `<div style="color:var(--accent)">${S.num}</div>`, st); pop(n, 0.25, 0.7);
+  const lab = $('div', 'chaplabel abs', `Kapitel ${S.num}`, st); rise(lab, 0.5);
+  const ti = $('div', 'chaptitle abs', esc(S.title), st); rise(ti, 0.7);
+  const su = $('div', 'chapsub abs', esc(S.sub), st); rise(su, 1.0);
+  const ic = $('div', 'chapicon abs emoji', S.icon, st); pop(ic, 1.1, 0.7);
+  loop(ic, [{ transform: 'rotate(-8deg)' }, { transform: 'rotate(8deg)' }], 1.2, 1.8);
+  fadeOut(st, T.dur - 0.35, 0.35);
+}
+
+function buildSpell(st, b) {
+  const t = $('div', 'spelltitle abs', '✏️ Buchstabieren', st); rise(t, 0.1);
+  const em = $('div', 'spellemoji abs emoji', S.emoji, st); pop(em, 0.4, 0.7);
+  const tiles = $('div', 'tiles abs', null, st);
+  const letters = [...S.word];
+  const bt = T.beats[1];
+  const span = bt ? bt.send - bt.start : 4;
+  // proportional zur Länge der Buchstabennamen
+  const w = S.names.map(n => n.length + 2), tot = w.reduce((a, c) => a + c, 0);
+  let acc = 0;
+  letters.forEach((l, i) => {
+    const tile = $('div', 'tile', null, tiles);
+    const f = $('div', 'face', l, tile);
+    f.style.color = PALETTE[i % 7][0];
+    const nm = $('div', 'nm', esc(S.names[i]), tile);
+    const tt = b(1) + span * acc / tot - 0.05; acc += w[i];
+    anim(f, [{ transform: 'rotateY(90deg) scale(.8)', opacity: 0 }, { transform: 'none', opacity: 1 }], tt, 0.45);
+    rise(nm, tt + 0.1, 0.4);
+  });
+  [...tiles.children].forEach((tile, i) => anim(tile, [{ transform: 'none' }, { transform: 'translateY(-36px)', offset: .4 }, { transform: 'none' }], b(2) + i * 0.08, 0.6, 'ease-in-out', 'none'));
+  flash(em, b(2), 0.9);
+}
+
+function buildQuiz(st, b) {
+  const bd = $('div', 'qbadge abs', `<div class="pill">❓ Quiz · ${S.qn} / ${S.qtotal}</div>`, st); pop(bd, 0.05);
+  const w = $('div', 'qword abs', null, st);
+  const parts = S.parts.map(([tx, lab], i) => {
+    const p = $('div', 'qpart', null, w);
+    const bgp = $('div', 'bgp', null, p);
+    $('span', '', esc(tx), p);
+    let l = null;
+    if (lab) { l = $('div', 'lab', esc(lab), p); }
+    return { p, bgp, l, lab };
+  });
+  pop(w, 0.2, 0.7);
+  // Countdown während der Pause
+  const pz = T.beats[1];
+  const cd = $('div', 'countdown abs', `<svg viewBox="0 0 230 230"><circle cx="115" cy="115" r="100" fill="#fff" stroke="#EADFCC" stroke-width="16"/><circle class="ring" cx="115" cy="115" r="100" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" transform="rotate(-90 115 115)" stroke-dasharray="628.3" stroke-dashoffset="0"/></svg>`, st);
+  cd.style.color = 'var(--accent)';
+  const ring = cd.querySelector('.ring');
+  const ra = $('div', 'readaloud abs', '🗣️ Lies laut!', st);
+  if (pz) {
+    const L = pz.send - pz.start;
+    pop(cd, pz.start, 0.4); fadeOut(cd, pz.send - 0.1, 0.3);
+    rise(ra, pz.start + 0.1, 0.4); fadeOut(ra, pz.send - 0.1, 0.3);
+    anim(ring, [{ strokeDashoffset: 0 }, { strokeDashoffset: 628.3 }], pz.start + 0.2, L - 0.3, 'linear');
+    [3, 2, 1].forEach((n, i) => {
+      const d = $('div', 'num', String(n), cd);
+      const s0 = pz.start + 0.2 + i * (L - 0.3) / 3;
+      anim(d, [{ opacity: 0, transform: 'scale(1.6)' }, { opacity: 1, transform: 'none' }], s0, 0.25, 'ease-out');
+      if (i < 2) fadeOut(d, s0 + (L - 0.3) / 3 - 0.15, 0.15);
+    });
+  }
+  const em = $('div', 'qemoji abs emoji', S.emoji, st);
+  pop(em, b(2), 0.7);
+  flash(w, b(2), 0.8);
+  let k = 0;
+  parts.forEach(({ bgp, l, lab }) => {
+    if (!lab) return;
+    const t0 = b(3) + 0.2 + k * 0.45; k++;
+    fade(bgp, t0, 0.3);
+    if (l) rise(l, t0 + 0.1, 0.4);
+  });
+}
+
+function buildRecap(st, b) {
+  const po = $('div', 'poster abs', '<h2>Alphabet &amp; Aussprache</h2>', st);
+  const g = $('div', 'pgrid', null, po);
+  const cells = ABC.map((l, i) => $('div', 'pcell', `<b>${l}</b><i>${NAMES[i]}</i>`, g));
+  const extra = EXTRA.map((l, i) => $('div', 'pcell', `<b>${l}</b><i>${EXTRA_NAMES[i]}</i>`, g));
+  pop(po, 0.1, 0.8);
+  // Karaoke-Hervorhebung proportional zur Textlänge im gesprochenen Beat
+  const bt = T.beats[1];
+  if (bt) {
+    const said = S.beats[1];
+    const names = said.replace(/\.$/, '').split(', ');
+    const tot = said.length; let pos = 0;
+    names.forEach((n, i) => {
+      const t0 = bt.start + (bt.send - bt.start) * pos / tot; pos += n.length + 2;
+      const c = cells[i]; if (!c) return;
+      anim(c, [{ background: 'transparent', transform: 'none' }, { background: PALETTE[i % 7][1], transform: 'scale(1.08)', offset: .3 }, { background: PALETTE[i % 7][1], transform: 'none' }], t0, 0.6, 'ease-out');
+    });
+  }
+  extra.forEach((c, i) => anim(c, [{ background: 'transparent' }, { background: '#FFF1B8' }], b(2) + 0.6 + i * 0.5, 0.3, 'linear'));
+}
+
+function buildOutro(st, b) {
+  for (let i = 0; i < 70; i++) {
+    const c = $('div', 'confetti', null, st);
+    const x = (i * 53) % 1920;
+    Object.assign(c.style, { left: x + 'px', top: '-60px', background: PALETTE[i % 7][0] });
+    A.push(c.animate([{ transform: `translate(0,0) rotate(0deg)` }, { transform: `translate(${(i % 9 - 4) * 30}px, 1200px) rotate(${360 + i * 40}deg)` }],
+      { duration: (3.5 + (i % 6) * 0.5) * 1000, delay: (0.2 + (i % 14) * 0.35) * 1000, iterations: Infinity, fill: 'both', easing: 'linear' }));
+  }
+  const t = $('div', 'title1 abs', 'Super <span class="t2">gemacht!</span> 🎉', st);
+  t.style.top = '230px';
+  pop(t, 0.2, 0.9);
+  const l = $('div', 'olist abs', null, st);
+  ['📖 Lies laut', '🔤 Buchstabiere deinen Namen', '👂 Hör genau hin'].forEach((s, i) => pop($('div', 'chip', s, l), b(1) + i * 1.3));
+  const go = $('div', 'go abs', 'Tschüss! 👋', st); go.style.top = '680px'; go.style.fontSize = '110px';
+  pop(go, b(2));
+}
+
+// ---------- Zeitsteuerung ----------
+function seek(t) {
+  for (const a of A) {
+    a.pause();
+    a.currentTime = (a._global ? (T.gstart + t) : t) * 1000;
+  }
+}
+window.setup = setup;
+window.seek = seek;
+</script>
+</body>
+</html>

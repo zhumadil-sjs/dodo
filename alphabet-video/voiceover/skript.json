@@ -1,0 +1,442 @@
+[
+  {
+    "nr": 1,
+    "id": "intro",
+    "text": "[excited] Hallo und herzlich willkommen! Heute lernen wir das deutsche Alphabet – alle Buchstaben, die Umlaute und das Eszett. [warmly] Danach entdecken wir die wichtigsten Laute und Regeln: von I-E und E-I bis S-C-H, S-P und S-T. Zu jedem Buchstaben gibt es Beispielwörter. Sprich einfach laut mit! [excited] Los geht's!"
+  },
+  {
+    "nr": 2,
+    "id": "overview",
+    "text": "Das deutsche Alphabet hat sechsundzwanzig Buchstaben – von A bis Z. Dazu kommen drei Umlaute: Ä, Ö und Ü – und ein ganz besonderer Buchstabe: das Eszett. Schauen wir sie uns einzeln an!"
+  },
+  {
+    "nr": 3,
+    "id": "chapter-1",
+    "text": "Kapitel eins: Das ABC."
+  },
+  {
+    "nr": 4,
+    "id": "letter-a",
+    "text": "Ah. Ah wie der Apfel. Das Auto. Die Ameise."
+  },
+  {
+    "nr": 5,
+    "id": "letter-b",
+    "text": "Beh. Beh wie der Ball. Der Baum. Das Brot."
+  },
+  {
+    "nr": 6,
+    "id": "letter-c",
+    "text": "Zeh. Zeh wie das Café. Der Computer. Der Clown. Das C allein ist selten. Es kommt meist in Fremdwörtern vor – und klingt dann oft wie ein K."
+  },
+  {
+    "nr": 7,
+    "id": "letter-d",
+    "text": "Deh. Deh wie der Delfin. Die Dose. Der Drache."
+  },
+  {
+    "nr": 8,
+    "id": "letter-e",
+    "text": "Eh. Eh wie der Elefant. Die Ente. Die Erde."
+  },
+  {
+    "nr": 9,
+    "id": "letter-f",
+    "text": "Eff. Eff wie der Fisch. Die Feder. Das Fahrrad."
+  },
+  {
+    "nr": 10,
+    "id": "letter-g",
+    "text": "Geh. Geh wie die Gitarre. Die Gabel. Das Geschenk."
+  },
+  {
+    "nr": 11,
+    "id": "letter-h",
+    "text": "Hah. Hah wie der Hund. Das Haus. Das Herz. Am Wortanfang hört man das H – wie ein warmer Hauch."
+  },
+  {
+    "nr": 12,
+    "id": "letter-i",
+    "text": "Ih. Ih wie der Igel. Die Insel. Die Idee."
+  },
+  {
+    "nr": 13,
+    "id": "letter-j",
+    "text": "Jott. Jott wie die Jacke. Das Jahr. Der Junge. Das J klingt weich, wie am Anfang von: ja!"
+  },
+  {
+    "nr": 14,
+    "id": "letter-k",
+    "text": "Kah. Kah wie die Katze. Der Kuchen. Die Kerze."
+  },
+  {
+    "nr": 15,
+    "id": "letter-l",
+    "text": "Ell. Ell wie der Löwe. Der Löffel. Die Leiter."
+  },
+  {
+    "nr": 16,
+    "id": "letter-m",
+    "text": "Emm. Emm wie die Maus. Der Mond. Die Milch."
+  },
+  {
+    "nr": 17,
+    "id": "letter-n",
+    "text": "Enn. Enn wie die Nase. Das Nest. Die Nudeln."
+  },
+  {
+    "nr": 18,
+    "id": "letter-o",
+    "text": "Oh. Oh wie die Orange. Das Ohr. Die Oma."
+  },
+  {
+    "nr": 19,
+    "id": "letter-p",
+    "text": "Peh. Peh wie die Pizza. Der Pinguin. Die Puppe."
+  },
+  {
+    "nr": 20,
+    "id": "letter-q",
+    "text": "Kuh. Kuh wie die Qualle. Das Quadrat. Das Quiz. Das Q kommt fast immer zusammen mit U. Q-U spricht man wie K und W zusammen."
+  },
+  {
+    "nr": 21,
+    "id": "letter-r",
+    "text": "Err. Err wie die Rose. Das Radio. Der Regen. Das deutsche R kommt meistens hinten aus dem Hals – ein bisschen wie ein leises Gurgeln."
+  },
+  {
+    "nr": 22,
+    "id": "letter-s",
+    "text": "Ess. Ess wie die Sonne. Das Sofa. Der Salat. Achtung: Vor einem Vokal klingt das S weich und summend – wie eine Biene."
+  },
+  {
+    "nr": 23,
+    "id": "letter-t",
+    "text": "Teh. Teh wie die Tomate. Der Tisch. Das Telefon."
+  },
+  {
+    "nr": 24,
+    "id": "letter-u",
+    "text": "Uh. Uh wie die Uhr. Der Uhu. Die U-Bahn."
+  },
+  {
+    "nr": 25,
+    "id": "letter-v",
+    "text": "Fau. Fau wie der Vogel. Der Vater. Das Veilchen. Das V klingt meistens wie F. Nur in Fremdwörtern wie Vase oder Video klingt es wie W."
+  },
+  {
+    "nr": 26,
+    "id": "letter-w",
+    "text": "Weh. Weh wie das Wasser. Die Wolke. Der Wal. Das W ist weich – die oberen Zähne berühren leicht die Unterlippe."
+  },
+  {
+    "nr": 27,
+    "id": "letter-x",
+    "text": "Iks. Iks wie das Taxi. Die Hexe. Das Xylofon. Das X klingt immer wie K und S zusammen."
+  },
+  {
+    "nr": 28,
+    "id": "letter-y",
+    "text": "Ypsilon. Ypsilon wie das Yoga. Die Pyramide. Das Handy. Das Ypsilon hat drei Gesichter – mehr dazu später!"
+  },
+  {
+    "nr": 29,
+    "id": "letter-z",
+    "text": "Zett. Zett wie das Zebra. Die Zitrone. Der Zug. Das Z klingt immer wie T und S zusammen."
+  },
+  {
+    "nr": 30,
+    "id": "chapter-2",
+    "text": "Kapitel zwei: Umlaute und Eszett."
+  },
+  {
+    "nr": 31,
+    "id": "letter-ae",
+    "text": "Ä. Ä wie der Bär. Der Käse. Die Äpfel. Das Ä klingt fast wie ein E. Oft kommt es von A: ein Apfel – zwei Äpfel."
+  },
+  {
+    "nr": 32,
+    "id": "letter-oe",
+    "text": "Ö. Ö wie das Öl. Das Brötchen. Der König. Trick: Forme die Lippen rund wie bei O – und sag dabei E. So entsteht das Ö."
+  },
+  {
+    "nr": 33,
+    "id": "letter-ue",
+    "text": "Ü. Ü wie die Tür. Die Brücke. Das Gemüse. Trick: Forme die Lippen rund wie bei U – und sag dabei I. So entsteht das Ü."
+  },
+  {
+    "nr": 34,
+    "id": "letter-sz",
+    "text": "Eszett. Das ist ein scharfes S. Eszett wie die Straße. Der Fuß. Heiß. Das Eszett steht nur nach einem langen Vokal oder nach A-U, E-I und E-U. Kein deutsches Wort beginnt mit Eszett."
+  },
+  {
+    "nr": 35,
+    "id": "chapter-3",
+    "text": "Kapitel drei: Lang oder kurz?."
+  },
+  {
+    "nr": 36,
+    "id": "dehnungs-h",
+    "text": "Steht ein H nach einem Vokal, hört man das H nicht. Es macht den Vokal nur lang. A-H: die Bahn. E-H: gehen. I-H: ihr. O-H: der Sohn. U-H: die Kuh. Das H bleibt also stumm!"
+  },
+  {
+    "nr": 37,
+    "id": "doppelvokale",
+    "text": "Zwei gleiche Vokale nebeneinander? Dann ist der Laut lang. Das Haar. Der Tee. Das Boot."
+  },
+  {
+    "nr": 38,
+    "id": "ie",
+    "text": "I und E zusammen klingen wie ein langes I. Die Liebe. Der Brief. Spielen. Das E hört man dabei nicht!"
+  },
+  {
+    "nr": 39,
+    "id": "lang-kurz",
+    "text": "Lang oder kurz? Achte auf die Konsonanten danach! Nach einem langen Vokal steht meist nur ein Konsonant: der Ofen, die Miete, die Hüte. Nach einem kurzen Vokal steht oft ein doppelter Konsonant: offen, die Mitte, die Hütte. Auch C-K und T-Z zählen als doppelt."
+  },
+  {
+    "nr": 40,
+    "id": "e-am-ende",
+    "text": "Ein E am Wortende wird immer gesprochen – kurz und leise. Die Katze. Die Blume. Der Name. Es ist also nicht stumm wie im Englischen!"
+  },
+  {
+    "nr": 41,
+    "id": "chapter-4",
+    "text": "Kapitel vier: Doppellaute."
+  },
+  {
+    "nr": 42,
+    "id": "ei",
+    "text": "E-I spricht man wie: ai. Das Eis. Drei. Das Ei. Auch A-I klingt genauso: der Mai, der Hai."
+  },
+  {
+    "nr": 43,
+    "id": "ie-ei",
+    "text": "Vorsicht, Verwechslungsgefahr! I-E und E-I sehen fast gleich aus. I-E ist ein langes I: die Biene, das Lied, Wien. E-I klingt wie ai: die Beine, das Leid, der Wein. Ein Buchstabe vertauscht – und schon ist es ein ganz anderes Wort!"
+  },
+  {
+    "nr": 44,
+    "id": "au",
+    "text": "A-U klingt einfach wie: au – wie wenn man sich weh tut. Au! Das Haus. Das Auto. Der Baum."
+  },
+  {
+    "nr": 45,
+    "id": "eu-aeu",
+    "text": "E-U und Ä-U klingen gleich: wie oi. Heute. Der Euro. Die Häuser. Die Bäume. Ä-U kommt oft von A-U: das Haus – die Häuser."
+  },
+  {
+    "nr": 46,
+    "id": "chapter-5",
+    "text": "Kapitel fünf: Buchstaben-Teams."
+  },
+  {
+    "nr": 47,
+    "id": "sch",
+    "text": "Drei Buchstaben, ein Laut: S-C-H klingt wie sch – wie wenn man jemanden leise macht: Schhh! Die Schule. Der Fisch. Die Schokolade."
+  },
+  {
+    "nr": 48,
+    "id": "st",
+    "text": "S-T am Wortanfang spricht man wie: scht. Der Stern. Die Stadt. Der Stuhl. Aber: In der Mitte oder am Ende bleibt es ein normales S-T – wie in Fenster oder in ist."
+  },
+  {
+    "nr": 49,
+    "id": "sp",
+    "text": "Genauso bei S-P am Wortanfang: Das klingt wie schp. Der Sport. Die Spinne. Der Spiegel. In der Wortmitte bleibt es meist ein normales S-P: die Wespe."
+  },
+  {
+    "nr": 50,
+    "id": "ch-ach",
+    "text": "Das C-H hat zwei Klänge. Nach A, O, U und A-U kommt der ach-Laut – rau, hinten im Hals. Das Buch. Die Nacht. Auch."
+  },
+  {
+    "nr": 51,
+    "id": "ch-ich",
+    "text": "Nach E, I, Ä, Ö, Ü, nach E-I und E-U und nach Konsonanten kommt der ich-Laut – weich und vorne, wie eine fauchende Katze. Ich. Die Milch. Leicht."
+  },
+  {
+    "nr": 52,
+    "id": "ach-ich",
+    "text": "Hör genau hin! Buch, Nacht, Loch – das ist der ach-Laut. Bücher, Nächte, Löcher – das ist der ich-Laut. Der Umlaut macht den Laut weich!"
+  },
+  {
+    "nr": 53,
+    "id": "chs",
+    "text": "C-H-S klingt wie ks – genau wie das X. Sechs. Der Fuchs. Wachsen."
+  },
+  {
+    "nr": 54,
+    "id": "ck",
+    "text": "C-K klingt einfach wie ein K. Der Zucker. Das Glück. Die Jacke. Merke: C-K steht nur nach einem kurzen Vokal."
+  },
+  {
+    "nr": 55,
+    "id": "tz",
+    "text": "T-Z klingt wie ts – genau wie das Z. Die Katze. Die Mütze. Sitzen. Auch T-Z steht nur nach einem kurzen Vokal."
+  },
+  {
+    "nr": 56,
+    "id": "pf",
+    "text": "P-F: Man spricht beide Buchstaben, schnell hintereinander. Erst die Lippen zu, dann pusten! Der Apfel. Das Pferd. Der Kopf."
+  },
+  {
+    "nr": 57,
+    "id": "qu",
+    "text": "Q-U klingt wie K und W zusammen. Quaken – wie ein Frosch. Bequem. Die Quelle."
+  },
+  {
+    "nr": 58,
+    "id": "ng",
+    "text": "N-G ist ein einziger Laut, ganz hinten im Mund. Ein G hört man nicht! Singen. Der Ring. Lang."
+  },
+  {
+    "nr": 59,
+    "id": "ung",
+    "text": "Die Endung U-N-G hörst du sehr oft. Die Zeitung. Die Wohnung. Die Übung. Super-Tipp: Wörter auf U-N-G sind immer feminin. Es heißt immer: die!"
+  },
+  {
+    "nr": 60,
+    "id": "nk",
+    "text": "Bei N-K klingt das N wie bei N-G – und danach kommt ein K. Die Bank. Trinken. Danke."
+  },
+  {
+    "nr": 61,
+    "id": "ph",
+    "text": "P-H klingt wie F. Das kommt aus dem Griechischen. Das Alphabet. Die Physik. Die Strophe."
+  },
+  {
+    "nr": 62,
+    "id": "th",
+    "text": "T-H klingt im Deutschen einfach wie T – nicht wie im Englischen! Das Theater. Das Thema. Die Apotheke."
+  },
+  {
+    "nr": 63,
+    "id": "tion",
+    "text": "Die Endung T-I-O-N spricht man: tsion. Die Information. Die Lektion. Die Station. Auch hier gilt: immer feminin – die!"
+  },
+  {
+    "nr": 64,
+    "id": "tsch",
+    "text": "Vier Buchstaben, ein Laut: T-S-C-H – wie in Deutsch! Deutsch. Tschüss! Klatschen."
+  },
+  {
+    "nr": 65,
+    "id": "chapter-6",
+    "text": "Kapitel sechs: Knifflige Buchstaben."
+  },
+  {
+    "nr": 66,
+    "id": "s-weich-scharf",
+    "text": "Das S hat zwei Stimmen. Vor einem Vokal klingt es weich und summend – wie das englische Z: Sonne, Rose, lesen. Am Wortende, bei Doppel-S und beim Eszett klingt es scharf und zischend: Haus, Wasser, Fuß."
+  },
+  {
+    "nr": 67,
+    "id": "s-z",
+    "text": "Und jetzt aufgepasst: Das deutsche S klingt oft wie ein englisches Z – aber das deutsche Z klingt wie T-S! Sahne, seit, Saal – weich und summend. Zahn, Zeit, Zahl – mit einem kurzen T davor: ts!"
+  },
+  {
+    "nr": 68,
+    "id": "sz-ss",
+    "text": "Beide klingen gleich scharf. Aber wann schreibt man was? Nach einem langen Vokal oder Doppellaut schreibt man Eszett: Straße, groß, Fuß. Nach einem kurzen Vokal schreibt man Doppel-S: Wasser, Kuss, Fluss."
+  },
+  {
+    "nr": 69,
+    "id": "v",
+    "text": "Das V hat zwei Klänge. In deutschen Wörtern klingt es wie F: der Vogel, vier, voll. In Fremdwörtern klingt es wie W: die Vase, das Video, das Klavier."
+  },
+  {
+    "nr": 70,
+    "id": "w",
+    "text": "Und das W? Es klingt wie ein englisches V – nie wie das englische W! Der Wind. Die Wurst. Die Woche."
+  },
+  {
+    "nr": 71,
+    "id": "j",
+    "text": "Das J klingt wie das Y im englischen yes. Ja! Jung. Der Joghurt."
+  },
+  {
+    "nr": 72,
+    "id": "y",
+    "text": "Das Ypsilon hat drei Gesichter. Am Wortanfang klingt es oft wie J: das Yoga, die Yacht. In griechischen Wörtern klingt es wie Ü: der Typ, die Gymnastik. Und am Ende englischer Wörter wie I: das Handy, die Party."
+  },
+  {
+    "nr": 73,
+    "id": "c",
+    "text": "Das C ist ein Chamäleon – es passt sich an! Vor A, O und U klingt es wie K: das Café, die Cola. Vor E, I und Ä klingt es oft wie ts: Celsius, Cäsar. In englischen Wörtern klingt es wie S: die City, der Cent. Und das Doppel-C? In Broccoli klingt es wie K – in Accessoire wie K-S."
+  },
+  {
+    "nr": 74,
+    "id": "auslaut",
+    "text": "Am Wortende werden B, D und G hart: B klingt wie P, D wie T und G wie K. Der Hund, der Tag, der Korb. Aber im Plural sind sie wieder weich: die Hunde, die Tage, die Körbe. Also: B wird P, D wird T, G wird K – aber nur am Ende!"
+  },
+  {
+    "nr": 75,
+    "id": "ig",
+    "text": "Am Wortende klingt I-G wie: ich. Der König. Der Honig. Zwanzig."
+  },
+  {
+    "nr": 76,
+    "id": "er",
+    "text": "Ein E-R am Wortende klingt fast wie ein kurzes A. Der Lehrer. Die Mutter. Aber. Auch ein R nach einem langen Vokal wird ganz weich: die Uhr, die Tür."
+  },
+  {
+    "nr": 77,
+    "id": "chapter-7",
+    "text": "Kapitel sieben: Buchstabieren und Quiz."
+  },
+  {
+    "nr": 78,
+    "id": "spell-berlin",
+    "text": "Jetzt üben wir Buchstabieren! Wie schreibt man Berlin? Beh. Eh. Err. Ell. Ih. Enn. Berlin!"
+  },
+  {
+    "nr": 79,
+    "id": "spell-muenchen",
+    "text": "Und wie schreibt man München? Emm. Ü. Enn. Zeh. Hah. Eh. Enn. München!"
+  },
+  {
+    "nr": 80,
+    "id": "spell-fussball",
+    "text": "Und jetzt mit Eszett: Fußball! Eff. Uh. Eszett. Beh. Ah. Ell. Ell. Fußball!"
+  },
+  {
+    "nr": 81,
+    "id": "quiz-1",
+    "text": "[excited] Quiz-Zeit! Lies dieses Wort laut. [long pause] Eichhörnchen! E-I klingt wie ai – und das C-H ist hier zweimal der weiche ich-Laut."
+  },
+  {
+    "nr": 82,
+    "id": "quiz-2",
+    "text": "Nächstes Wort! Lies laut. [long pause] Spielzeug! S-P wird schp, I-E ist lang, Z klingt wie ts, E-U wie oi – und das G am Ende klingt wie K."
+  },
+  {
+    "nr": 83,
+    "id": "quiz-3",
+    "text": "Und dieses Wort? [long pause] Schmetterling! S-C-H am Anfang, das Doppel-T macht das E kurz, und N-G ist ein einziger Laut."
+  },
+  {
+    "nr": 84,
+    "id": "quiz-4",
+    "text": "Weiter geht's! [long pause] Frühstück! Ü-H ist ein langes Ü. Und S-T am Anfang von Stück klingt wie scht."
+  },
+  {
+    "nr": 85,
+    "id": "quiz-5",
+    "text": "Fast geschafft! [long pause] Straßenbahn! S-T wird scht, das Eszett ist scharf, und A-H ist lang."
+  },
+  {
+    "nr": 86,
+    "id": "quiz-6",
+    "text": "Das letzte Wort! [long pause] Zwiebel! Z klingt wie ts, W wie ein englisches V, und I-E ist ein langes I."
+  },
+  {
+    "nr": 87,
+    "id": "recap",
+    "text": "Zum Schluss noch einmal das ganze Alphabet. Sprich mit! Ah, Beh, Zeh, Deh, Eh, Eff, Geh, Hah, Ih, Jott, Kah, Ell, Emm, Enn, Oh, Peh, Kuh, Err, Ess, Teh, Uh, Fau, Weh, Iks, Ypsilon, Zett. Und dazu: Ä, Ö, Ü – und Eszett!"
+  },
+  {
+    "nr": 88,
+    "id": "outro",
+    "text": "[excited] Super gemacht! Du kennst jetzt das deutsche Alphabet und die wichtigsten Laute. [warmly] Übe jeden Tag ein bisschen: Lies laut, buchstabiere deinen Namen und hör genau hin. Bis zum nächsten Mal – tschüss!"
+  }
+]
